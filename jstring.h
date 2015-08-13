@@ -5,11 +5,11 @@
 #include <sstream>
 
 namespace JCPP {
-  std::string test() {
+  static std::string test() {
     return "Test";
   }
 
-  std::string GetStringBetweenStrings(std::string data, std::string startDelim, std::string endDelim) {
+  static std::string GetStringBetweenStrings(std::string data, std::string startDelim, std::string endDelim) {
     unsigned first = data.find(startDelim);
     unsigned last = data.find(endDelim);
     if (first != std::string::npos && last != std::string::npos) {
@@ -22,7 +22,12 @@ namespace JCPP {
   }
 
 
-  std::vector<std::string> GetStringsBetweenStrings(std::string data, std::string startDelim, std::string endDelim) {
+  static std::vector<std::string> GetStringsBetweenStrings(std::string data, std::string startDelim, std::string endDelim) {
+    std::string thing1 = data;
+    std::string thing2 = startDelim;
+    std::string thing3 = endDelim;
+    
+    
     std::vector<std::string> stringsToReturn;
     unsigned int first = data.find(startDelim);
     unsigned int last = data.find(endDelim, first + 1);
@@ -40,7 +45,7 @@ namespace JCPP {
     return stringsToReturn;
   }
 
-  std::vector<std::string> GetStringsSeparatedBySubstring(std::string data, std::string substring) {
+  static std::vector<std::string> GetStringsSeparatedBySubstring(std::string data, std::string substring) {
       std::vector<std::string> stringsToReturn;
       while (data.find(substring) != std::string::npos) {
           unsigned int loc = data.find(substring);
@@ -56,21 +61,21 @@ namespace JCPP {
   }
 
   // Type Conversions
-  std::string IntToString(int anInt) {
+  static std::string IntToString(int anInt) {
     std::stringstream ss;
     ss << anInt;
     std::string aString = ss.str();
     return aString;
   }
 
-  std::string FloatToString(float aFloat) {
+  static std::string FloatToString(float aFloat) {
     std::stringstream ss;
     ss << aFloat;
     std::string aString = ss.str();
     return aString;
   }
 
-  std::string BoolToString(bool aBool) {
+  static std::string BoolToString(bool aBool) {
     if (aBool) {
         return "1";
     }
@@ -79,14 +84,14 @@ namespace JCPP {
     }
   }
 
-  std::string SizetToString(size_t aSizeT) {
+  static std::string SizetToString(size_t aSizeT) {
     std::stringstream ss;
 
     ss << aSizeT;
     return ss.str();
   }
 
-  std::string GetStringAfterSubstring(std::string data, std::string substring) {
+  static std::string GetStringAfterSubstring(std::string data, std::string substring) {
 	  unsigned int first = data.find(substring);
 	  if (first != std::string::npos) {
         return data.substr(first + substring.length(), std::string::npos);
@@ -95,7 +100,7 @@ namespace JCPP {
 	  }
   }
 
-  std::string GetStringBeforeSubstring(std::string data, std::string substring) {
+  static std::string GetStringBeforeSubstring(std::string data, std::string substring) {
     unsigned int first = data.find(substring);
     if (first != std::string::npos) {
       return data.substr(0, first);
