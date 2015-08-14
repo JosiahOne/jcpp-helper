@@ -27,19 +27,18 @@ namespace JCPP {
     std::string thing2 = startDelim;
     std::string thing3 = endDelim;
     
-    
     std::vector<std::string> stringsToReturn;
-    unsigned int first = data.find(startDelim);
-    unsigned int last = data.find(endDelim, first + 1);
-    unsigned int startLoc = 0;
+    std::string::size_type first = data.find(startDelim);
+    std::string::size_type last = data.find(endDelim, first + startDelim.length());
+    std::string::size_type startLoc = 0;
 
     while (first != std::string::npos && last != std::string::npos) {
-      std::string strNew = data.substr(first + startDelim.length(), last - first - endDelim.length());
+      std::string strNew = data.substr(first + startDelim.length(), last - first - 1);
       std::cout << strNew;
       stringsToReturn.push_back(strNew);
       startLoc = last;
       first = data.find(startDelim, startLoc);
-      last = data.find(endDelim, first + 1);
+      last = data.find(endDelim, first + startDelim.length());
     }
     std::cout << "\n===\n";
     return stringsToReturn;
