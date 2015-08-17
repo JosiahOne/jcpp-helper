@@ -108,4 +108,46 @@ namespace JCPP {
       return "NOTFOUND";
     }
   }
+
+  static std::string WStringToString(std::wstring wString) {
+    std::string returnValue(wString.begin(), wString.end());
+    return returnValue;
+  }
+
+#ifdef _UNICODE
+  static const wchar_t* StringToProperChar(std::string someString) {
+    wchar_t returnData[512];
+    mbstowcs(returnData, someString.c_str(), 512);
+
+    return returnData;
+  }
+
+  static const std::wstring StringToProperString(std::string someString) {
+    wchar_t returnData[512];
+    mbstowcs(returnData, someString.c_str(), 512);
+  
+    std::wstring returnString = std::wstring(returnData);
+    return returnString;
+  }
+  
+  static std::string ProperCharToString(wchar_t* someCString) {
+    std::wstring ws(someCString);
+    std::string test(ws.begin(), ws.end());
+
+    return test;
+  }
+#else
+
+  static const char* StringToProperChar(std::string someString) {
+    return someString.c_str();
+  }
+
+  static const std::wstring StringToProperString(std::string someString) {
+    return someString;
+  }
+  
+  static std::string ProperCharToString(char* someCString) {
+    return std::string(someCString);
+  }
+#endif
 }
