@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 namespace JCPP {
   static std::string test() {
@@ -21,6 +22,19 @@ namespace JCPP {
     }
   }
 
+  static std::string StripWhitespace(std::string data) {
+    unsigned int indexer = 0;
+
+    while (indexer < data.size()) {
+      if (data[indexer] == ' ') {
+        data.erase(indexer, 1);
+      } else {
+        indexer++;
+      }
+    }
+
+    return data;
+  }
 
   static std::vector<std::string> GetStringsBetweenStrings(std::string data, std::string startDelim, std::string endDelim) {
     std::string thing1 = data;
