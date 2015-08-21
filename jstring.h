@@ -11,8 +11,8 @@ namespace JCPP {
   }
 
   static std::string GetStringBetweenStrings(std::string data, std::string startDelim, std::string endDelim) {
-    unsigned first = data.find(startDelim);
-    unsigned last = data.find(endDelim);
+    size_t first = data.find(startDelim);
+    size_t last = data.find(endDelim);
     if (first != std::string::npos && last != std::string::npos) {
         std::string strNew = data.substr(first + startDelim.length(), last - first);
         return strNew;
@@ -61,7 +61,7 @@ namespace JCPP {
   static std::vector<std::string> GetStringsSeparatedBySubstring(std::string data, std::string substring) {
       std::vector<std::string> stringsToReturn;
       while (data.find(substring) != std::string::npos) {
-          unsigned int loc = data.find(substring);
+          size_t loc = data.find(substring);
           stringsToReturn.push_back(data.substr(0, loc));
           data.erase(0, loc + substring.length());
       }
@@ -105,7 +105,7 @@ namespace JCPP {
   }
 
   static std::string GetStringAfterSubstring(std::string data, std::string substring) {
-	  unsigned int first = data.find(substring);
+	  size_t first = data.find(substring);
 	  if (first != std::string::npos) {
         return data.substr(first + substring.length(), std::string::npos);
 	  } else {
@@ -114,7 +114,7 @@ namespace JCPP {
   }
 
   static std::string GetStringBeforeSubstring(std::string data, std::string substring) {
-    unsigned int first = data.find(substring);
+    size_t first = data.find(substring);
     if (first != std::string::npos) {
       return data.substr(0, first);
     }
