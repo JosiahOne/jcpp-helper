@@ -56,6 +56,21 @@ namespace JCPP {
     return StripLeadingCharacter(data, ' ');
   }
 
+  static std::string StripTrailingWhitespace(std::string data) {
+    int posToEnd = data.size() - 1;
+    for (int i = data.size() - 1; i >= 0; i--) {
+      if (data[i] != ' ') {
+        posToEnd = i;
+        break;
+      } else {
+        posToEnd--;
+      }
+    }
+
+    data = data.substr(0, posToEnd + 1);
+    return data;
+  }
+
   static std::vector<std::string> GetStringsBetweenStrings(std::string data, std::string startDelim, std::string endDelim) {
     std::string thing1 = data;
     std::string thing2 = startDelim;
@@ -149,6 +164,18 @@ namespace JCPP {
     else {
       return "NOTFOUND";
     }
+  }
+
+  static std::string GetNumbersFromString(std::string data) {
+    std::string returnData = "";
+
+    for (int i = 0; i < data.size(); i++) {
+      if (data[i] > 47 && data[i] < 58) {
+        returnData += data[i];
+      }
+    }
+
+    return returnData;
   }
 
   static std::string WStringToString(std::wstring wString) {
