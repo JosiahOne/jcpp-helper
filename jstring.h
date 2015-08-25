@@ -36,6 +36,26 @@ namespace JCPP {
     return data;
   }
 
+  static std::string StripLeadingCharacter(std::string data, char car) {
+    int posToStart = 0;
+
+    for (int i = 0; i < data.size(); i++) {
+      if (data[i] != car) {
+        break;
+      }
+      else {
+        posToStart++;
+      }
+    }
+
+    data = data.substr(posToStart, std::string::npos);
+    return data;
+  }
+
+  static std::string StripLeadingWhitespace(std::string data) {
+    return StripLeadingCharacter(data, ' ');
+  }
+
   static std::vector<std::string> GetStringsBetweenStrings(std::string data, std::string startDelim, std::string endDelim) {
     std::string thing1 = data;
     std::string thing2 = startDelim;
@@ -73,6 +93,14 @@ namespace JCPP {
       return stringsToReturn;
   }
 
+  static std::string StringToLower(std::string data) {
+    for (int i = 0; i < data.size(); i++) {
+      data[i] = tolower(data[i]);
+    }
+
+    return data;
+  }
+  
   // Type Conversions
   static std::string IntToString(int anInt) {
     std::stringstream ss;
