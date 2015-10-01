@@ -4,6 +4,9 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#ifdef _WINDOWS
+#include <atlstr.h>
+#endif
 
 namespace JCPP {
   static std::string test() {
@@ -88,6 +91,13 @@ namespace JCPP {
     return aString;
   }
 
+  static std::string ULLToString(unsigned long long aULL) {
+    std::stringstream ss;
+    ss << aULL;
+    std::string aString = ss.str();
+    return aString;
+  }
+
   static std::string BoolToString(bool aBool) {
     if (aBool) {
         return "1";
@@ -127,6 +137,24 @@ namespace JCPP {
     std::string returnValue(wString.begin(), wString.end());
     return returnValue;
   }
+
+#ifdef _WINDOWS
+  std::string ToSTDS(CString cString)
+  {
+    // Convert a TCHAR string to a LPCSTR
+    CT2CA pszConvertedAnsiString(cString);
+    // construct a std::string using the LPCSTR input
+    std::string strStd(pszConvertedAnsiString);
+    return strStd;
+  }
+
+  CString ToCS(std::string stdString)
+  {
+    CString cs(stdString.c_str());
+
+    return cs;
+  }
+#endif
 
 #ifdef _UNICODE
   static const wchar_t* StringToProperChar(std::string someString) {
