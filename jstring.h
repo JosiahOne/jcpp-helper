@@ -78,7 +78,7 @@ namespace JCPP {
     std::string thing1 = data;
     std::string thing2 = startDelim;
     std::string thing3 = endDelim;
-    
+
     std::vector<std::string> stringsToReturn;
     std::string::size_type first = data.find(startDelim);
     std::string::size_type last = data.find(endDelim, first + startDelim.length());
@@ -118,7 +118,7 @@ namespace JCPP {
 
     return data;
   }
-  
+
   // Type Conversions
   static std::string IntToString(int anInt) {
     std::stringstream ss;
@@ -222,11 +222,11 @@ namespace JCPP {
   static const std::wstring StringToProperString(std::string someString) {
     wchar_t returnData[512];
     mbstowcs(returnData, someString.c_str(), 512);
-  
+
     std::wstring returnString = std::wstring(returnData);
     return returnString;
   }
-  
+
   static std::string ProperCharToString(wchar_t* someCString) {
     std::wstring ws(someCString);
     std::string test(ws.begin(), ws.end());
@@ -239,10 +239,10 @@ namespace JCPP {
     return someString.c_str();
   }
 
-  static const std::wstring StringToProperString(std::string someString) {
+  static const std::string StringToProperString(std::string someString) {
     return someString;
   }
-  
+
   static std::string ProperCharToString(char* someCString) {
     return std::string(someCString);
   }
