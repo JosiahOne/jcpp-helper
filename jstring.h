@@ -194,7 +194,7 @@ namespace JCPP {
   }
 
 #ifdef _WINDOWS
-  std::string ToSTDS(CString cString)
+  static std::string ToSTDS(CString cString)
   {
     // Convert a TCHAR string to a LPCSTR
     CT2CA pszConvertedAnsiString(cString);
@@ -203,7 +203,7 @@ namespace JCPP {
     return strStd;
   }
 
-  CString ToCS(std::string stdString)
+  static CString ToCS(std::string stdString)
   {
     CString cs(stdString.c_str());
 
