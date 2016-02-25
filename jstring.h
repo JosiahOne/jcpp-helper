@@ -42,7 +42,7 @@ namespace JCPP {
   static std::string StripLeadingCharacter(std::string data, char car) {
     int posToStart = 0;
 
-    for (int i = 0; i < data.size(); i++) {
+    for (unsigned int i = 0; i < data.size(); i++) {
       if (data[i] != car) {
         break;
       }
@@ -112,7 +112,7 @@ namespace JCPP {
   }
 
   static std::string StringToLower(std::string data) {
-    for (int i = 0; i < data.size(); i++) {
+    for (unsigned int i = 0; i < data.size(); i++) {
       data[i] = tolower(data[i]);
     }
 
@@ -179,7 +179,7 @@ namespace JCPP {
   static std::string GetNumbersFromString(std::string data) {
     std::string returnData = "";
 
-    for (int i = 0; i < data.size(); i++) {
+    for (unsigned int i = 0; i < data.size(); i++) {
       if (data[i] > 47 && data[i] < 58) {
         returnData += data[i];
       }
@@ -213,7 +213,7 @@ namespace JCPP {
 
 #ifdef _UNICODE
   static const wchar_t* StringToProperChar(std::string someString) {
-    wchar_t returnData[512];
+    wchar_t *returnData = (wchar_t *) malloc(sizeof(wchar_t) * 512);
     mbstowcs(returnData, someString.c_str(), 512);
 
     return returnData;
